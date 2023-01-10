@@ -1,4 +1,9 @@
+import React, {useContext} from "react";
+import DeleteContext from "../../store/delete-context";
+
 const ExpenseDelete = (props) => {
+
+  const context = useContext(DeleteContext)
 
   const deleteExpenseCancel = () => {
     props.onEditExpense(false);
@@ -6,7 +11,7 @@ const ExpenseDelete = (props) => {
 
   const deleteExpenseConfirm = () => {
     props.onEditExpense(false);
-    props.onDeleteExpense(props.id)
+    context.deleteExpense(props.id)
   };
 
   return (

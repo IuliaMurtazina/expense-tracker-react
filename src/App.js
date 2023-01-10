@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
+import DeleteContect from "./store/delete-context";
 
 const App = () => {
   const [expenses, setExpenses] = useState([]);
@@ -17,7 +18,7 @@ const App = () => {
     localStorage.setItem("expenses", JSON.stringify(updatedExpenses));
   };
 
-  const deleteExpense = (expenseID) => {
+  const deleteExpenseHandler = (expenseID) => {
     setExpenses((prevExpenses) => {
       const updatedExpenses = prevExpenses.filter(
         (expense) => expense.id !== expenseID
@@ -36,10 +37,10 @@ const App = () => {
   // );
 
   return (
-    <div>
+    <DeleteContect.Provider value={{ deleteExpense: deleteExpenseHandler }}>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses items={expenses} onDeleteExpense={deleteExpense} />
-    </div>
+      <Expenses items={expenses} />
+    </DeleteContect.Provider>
   );
 };
 

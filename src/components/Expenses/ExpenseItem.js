@@ -12,7 +12,6 @@ const ExpenseItem = (props) => {
     if(!clicked) return;
 
     setEditExpense(true);
-    console.log(editExpense);
   };
 
   const handleEditExpense = (newValue) => {
@@ -21,7 +20,7 @@ const ExpenseItem = (props) => {
 
   return (
     <li onClick={startEditExpense}>
-      {editExpense && <ExpenseDelete onEditExpense={handleEditExpense} id={props.id} onDeleteExpense={props.onDeleteExpense}/>}
+      {editExpense && <ExpenseDelete onEditExpense={handleEditExpense} id={props.id}/>}
       {!editExpense && (
         <Card className="expense-item">
           <ExpenseDate date={props.date} />
